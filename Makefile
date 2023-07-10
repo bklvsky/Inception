@@ -12,10 +12,14 @@ $(DATA_DIR):
 
 up:
 	@echo "Setting up host adress: " $(ADRESS)
+	# for WSL also edit 'Windows/System32/drivers/etc/hosts'
 	@sudo sed -i "0,/localhost/{s//$(ADRESS)/g}" /etc/hosts
 	@echo "Building docker-compose"
-	@sudo docker-compose --verbose -f ./srcs/docker-compose.yml up
+	@sudo docker-compose -f ./srcs/docker-compose.yml up
+	# @sudo docker-compose --verbose -f ./srcs/docker-compose.yml up
 
+re: 
+	@sudo docker-compose -f ./srcs/docker-compose.yml up --build
 check:
 	docker ps -a
 	docker images ls -a

@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   nginx:
@@ -8,7 +8,7 @@ services:
     build: requirements/nginx
     # image: nginx:latest
     volumes:
-      - wp:/var/www/wordpress # we specify which directory we need
+      - wp:/var/www/html # we specify which directory we need
     networks:
       - project
     ports:
@@ -20,36 +20,41 @@ services:
   wordpress:
     env_file:
       - .env
-    environment:
-      - WORDPRESS_DB_NAME=${DB_NAME}
+    # environment:
+      # - WORDPRESS_DB_NAME=${DB_NAME}
       # - WORDPRESS_TABLE_PREFIX=${WORDPRESS_TABLE_PREFIX:-wp_}
-      - WORDPRESS_DB_HOST=${DB_HOST:-mysql}
-      - WORDPRESS_DB_USER=${DB_USER:-root}
-      - WORDPRESS_DB_PASSWORD=${DB_PASSWORD:-password}=value
+      # - WORDPRESS_DB_HOST=${DB_HOST:-mysql}
+      # - WORDPRESS_DB_USER=${DB_USER:-root}
+      # - WORDPRESS_DB_PASSWORD=${DB_PASSWORD:-password}=value
     container_name: wordpress
     build: requirements/wordpress
     # image: wordpress:latest
     volumes:
-      - wp:/var/www/html/wordpress #contains databases or other special files that programs often change.
+      - wp:/var/www/html/ #contains databases or other special files that programs often change.
     networks:
       - project
     depends_on:
-      - mariadb
+    - mariadb
+      # mariadb:
+      #    condition: service_healthy
     restart: always
   
   mariadb:
-    # environment:
-      # - MARIADB_ROOT_PASSWORD=root42
     env_file:
       - .env
     container_name: mariadb
     build: requirements/mariadb
-    # image: mariadb:latest
     volumes:
       - db:/var/lib/mysql # we specify which directory we need
     networks:
       - project
     restart: always
+    # healthcheck:
+    #   test: mysqladmin ping -u ${MYSQL_USER} --password=${MYSQL_PASSWORD}
+    #   start_period: 5s
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 55
 
 # Your volumes will be available in the /home/login/data folder of the
 # host machine using Docker.

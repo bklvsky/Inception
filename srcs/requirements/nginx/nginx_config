@@ -2,21 +2,23 @@ server {
     listen  443 ssl;
     listen  [::]:443 ssl;
 
-    server_name         dselmy.42.fr www.dselmy.42.fr;
+    server_name dselmy.42.fr;
+    
+    ssl on;
     ssl_certificate /etc/ssl/certs/dselmy.crt;
     ssl_certificate_key /etc/ssl/private/dselmy.key;
     ssl_protocols TLSv1.2 TLSv1.3;
     
-    root /var/www/wordpress;
+    root /var/www/html;
     index  index.php index.html index.htm;
 
-    autoindex on;
     location / {
-    try_files $uri $uri/ /index.php?$args;
+        autoindex on;
+        try_files $uri $uri/ /index.php?$args;
     }
 
     location ~ \.php$ {
-    include snippets/fastcgi-php.conf;
-    fastcgi_pass             unix:/var/run/php/php7.3-fpm.sock;
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass wordpress:9000;
     }
 }

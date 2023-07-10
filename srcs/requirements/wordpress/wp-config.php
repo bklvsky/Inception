@@ -20,16 +20,16 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', getenv('DB_NAME') );
+define( 'DB_NAME', 'inception_db' );
 
 /** MySQL database username */
-define( 'DB_USER', getenv('DB_USER') );
+define( 'DB_USER', 'dselmy_user');
 
 /** MySQL database password */
-define( 'DB_PASSWORD', getenv('DB_PASSWORD') );
+define( 'DB_PASSWORD', 'coolpassword42' );
 
 /** MySQL hostname */
-define( 'DB_HOST', getenv('DB_HOST') );
+define( 'DB_HOST', 'mariadb' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -49,14 +49,14 @@ define( 'FS_METHOD', 'direct' );
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'put your unique phrase here');
-define('SECURE_AUTH_KEY',  'put your unique phrase here');
-define('LOGGED_IN_KEY',    'put your unique phrase here');
-define('NONCE_KEY',        'put your unique phrase here');
-define('AUTH_SALT',        'put your unique phrase here');
-define('SECURE_AUTH_SALT', 'put your unique phrase here');
-define('LOGGED_IN_SALT',   'put your unique phrase here');
-define('NONCE_SALT',       'put your unique phrase here');
+define('AUTH_KEY',         '}t6=PE_okv|`X~EJ~-|Lb,VAowk;=9:[7+qnf}q@4$6+37PImoe#6gf6+^AN)eK0');
+define('SECURE_AUTH_KEY',  '[GZ#0U-}/?-<S@!Oxe[;?PT9,QA1Lls-S4b13I#+wlA(k1+tA|ZIi0}msVRX..$v');
+define('LOGGED_IN_KEY',    '&qr`$Ya-<_8e}cQh[o5ImRS%0p75AWd%jPI9i+J^jv+-fMl@Rc5RGxA&%}./A10T');
+define('NONCE_KEY',        ')F=>A+5.{r}[/Z|d, 2Jhz4H-!Y&Z^-xAE3,6g$CnSKi|#4`9K~_~bI_{]]43?VX');
+define('AUTH_SALT',        'P-A.xsuTGC74]([AmtpLAJ5^#8;U9nLlVNXRtr!3]S`elK8la5(QPfq%gp+Zf_RE');
+define('SECURE_AUTH_SALT', 'n;F>L3JG<?+Rkv~at1+;5{iq|+s9|QA+yV0jo!.l-0LiR</~6:i_GyuSgq8Qc98l');
+define('LOGGED_IN_SALT',   'IJhw@o5Yx#>0|~2(QW{/tm8<-CQqRxY tK.4kBWUzQe-9*,0I5/n1U6o-eaZ@p#F');
+define('NONCE_SALT',       'AMHvtJL*4!R|W^|_2N>,RFj+wH4+}]wGN78{@!L[e^ifHY&5*M%iRYjEFIT{W?%p');
 
 /**#@-*/
 
@@ -80,7 +80,9 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define ('WP_ALLOW_REPAIR', true);
 
 /* That's all, stop editing! Happy publishing. */
 
